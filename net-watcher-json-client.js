@@ -13,20 +13,3 @@ client.on('data', data => {
         console.log(`Unrecognized message type: ${message.type}`);
     }
 })
-
-
-net.createServer(connection => {
-    // reporting 
-    console.log('Subscriber connected');
-    connection.write(JSON.stringify({type: 'watching', file: filename}) + '\n' );
-
-    // watcher setup
-    const watcher = fs.watch(filename, () => connection.write(
-        JSON.stringify({type: 'changed', timestamp: Date.now()}) + '\n' ));
-
-    //cleanup
-    connection.on('close', () => {
-        console.log('Subscriber disconnected');
-        watcher.close();
-    });
-}).listen(60300, () => console.log('Listening for subscribers'));
