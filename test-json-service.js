@@ -8,10 +8,13 @@ const server = require('net').createServer(connection => {
 
     // send the first chunk immediately
     connection.write(firstChunk);
+    console.log('sent firstChunk');
+
 
     //after a short delay send the second chunk
     const timer = setTimeout(() => {
         connection.write(secondChunk);
+        console.log('sent secondChunk');
         connection.end();
     },100);
 
