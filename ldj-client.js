@@ -1,3 +1,5 @@
+const { connect } = require('http2');
+
 const EventEmitter = require('events').EventEmitter;
 class LDJClient extends EventEmitter {
     constructor(stream){
@@ -13,5 +15,10 @@ class LDJClient extends EventEmitter {
                 boundary = buffer.indexOf('\n');
             }
         });
+        }
+
+static connect(stream) {
+    return new LDJClient(stream);
     }
 }
+
