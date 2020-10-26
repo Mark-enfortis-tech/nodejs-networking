@@ -21,4 +21,5 @@ static connect(stream) {
     return new LDJClient(stream);
     }
 }
+module.exports = LDJClient;
 
