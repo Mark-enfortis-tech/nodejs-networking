@@ -15,7 +15,7 @@ const server = require('net').createServer(connection => {
         connection.end();
     },100);
 
-    //clear teimer when the connection ends
+    //clear timer when the connection ends
     connection.on('end', () => {
         clearTimeout(timer);
         console.log('Subscriber disconnected');
